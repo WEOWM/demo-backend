@@ -8,12 +8,18 @@ const loginRoute = require("./routes/auth/login");
 
 const app = express();
 
-
-
-
 // ✅ Middleware
-app.use(express.json()); // replaces body-parser
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// ✅ Enable CORS
+app.use(cors({
+  origin: [
+    "http://localhost:5173", 
+    "http://localhost:3000", 
+  ],
+  credentials: true
+}));
 
 // ✅ MongoDB connection
 const PORT = process.env.PORT || 3000;
