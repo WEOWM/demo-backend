@@ -8,27 +8,8 @@ const loginRoute = require("./routes/auth/login");
 
 const app = express();
 
-// ✅ Allowed origins for CORS
-const allowedOrigins = [
-  "http://localhost:3000",
-  "https://demo-backend-pi-seven.vercel.app"
-];
 
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      // Allow requests with no origin (like Postman, curl)
-      if (!origin) return callback(null, true);
 
-      if (allowedOrigins.includes(origin)) {
-        return callback(null, true);
-      } else {
-        return callback(new Error("Not allowed by CORS"));
-      }
-    },
-    credentials: true, // set true if you use cookies / auth headers
-  })
-);
 
 // ✅ Middleware
 app.use(express.json()); // replaces body-parser
